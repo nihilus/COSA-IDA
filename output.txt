@@ -1,0 +1,495 @@
+This is the sample output for FreemeTest.apk
+
+1. source code of NDK library within FreemeTest.apk
+JNIEXPORT jint JNICALL Java_edu_usc_FreemeTest_FreemeTestActivity_t1
+  (JNIEnv *env, jobject obj) {
+
+   jclass cls = env->FindClass("edu/usc/FreemeTest/Test1");
+   jmethodID mid = env->GetMethodID(cls, "test", "()V");
+   jfieldID k1 = env->GetFieldID(cls, "k1", "I");
+   return 0;
+}
+
+long c1(int x, char p) {
+  long l = 10;
+  char b1 = x+p;
+  l +=b1;
+  int i1 = x+p;
+  l +=i1;
+  return l;
+}
+
+JNIEXPORT jlong JNICALL Java_edu_usc_FreemeTest_FreemeTestActivity_t2
+  (JNIEnv *env, jobject obj, jlong x1) {
+  int i = 256;
+  char b = 10;
+    long c = -15;
+    if(x1>10) {
+        c += x;
+    }
+    c +=c1(i, b);
+  return  c;
+}
+
+2. Output of the analyzer - it traces all registers using an static analyzer
+/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/bin/java -Didea.launcher.port=7537 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 15.app/Contents/bin" -Dfile.encoding=UTF-8 -classpath "/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/lib/tools.jar:/Users/kevin/Documents/workspace/COSA-IDA/out/production/COSA-IDA:/Users/kevin/Documents/workspace/COSA-IDA/libs/asm-debug-all-5.0.3.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/axml-2.0.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/AXMLPrinter2.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/commons-compress-1.9.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/commons-io-2.4.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/polyglot.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/jboss-common-core-2.5.0.Final.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/jasminclasses-develop.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/guava-14.0.1.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/logback-core-1.1.3.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/logback-classic-1.1.3.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/slf4j-api-1.7.12.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/herosclasses-develop.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/sqlite-jdbc-3.8.10.1.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/dexlib2-2.0.8-dev.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/util-2.0.8-dev.jar:/Users/kevin/Documents/workspace/COSA-IDA/libs/com.microsoft.z3.jar:/Applications/IntelliJ IDEA 15.app/Contents/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain com.tosnos.freeme.Main
+Comprehensive Static Analyzer For Android Application (COSA with IDA Pro) 0.1
+Copyright (c) 2014, University of Southern California All rights reserved
+Author: Sangwon Lee(sangwon.lee@usc.edu)
+edu.usc.FreemeTest is not exist on Database
+Using './libs/android.jar' as android.jar
+Warning: java.lang.invoke.LambdaMetafactory is a phantom class!
+Warning: java.lang.ref.Finalizer is a phantom class!
+application 13
+[Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
+Total methods: 6196
+Initially reachable methods: 35
+Classes with at least one reachable method: 18
+[Spark] Pointer Assignment Graph in 0.0 seconds.
+Total types: 854
+[Spark] Type masks in 0.0 seconds.
+VarNodes: 136
+FieldRefNodes: 1
+AllocNodes: 10
+Total VarNodes: 136. Collapsing SCCs...
+0 nodes were collapsed.
+Cleaning up graph for merged nodes
+Done cleaning up graph for merged nodes
+[Spark] Pointer Graph simplified in 0.0 seconds.
+Worklist has 28 nodes.
+Now handling field references
+[Spark] Propagation in 0.0 seconds.
+[Spark] Solution found in 0.0 seconds.
+[Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
+[Spark] Number of reachable methods: 34
+INFO  LibraryModule - libmyjni.so is being preprocessed
+INFO  LibraryModule - libmyjni.so is being preprocessed
+INFO  LibraryModule - libmyjni.so is being preprocessed
+INFO  LibraryModule - libmyjni.so is being preprocessed
+INFO  LibraryModule - libstdc++.so is being preprocessed
+INFO  NativeLibraryHandler - Loading external library : stdc++
+INFO  LibraryModule - libm.so is being preprocessed
+INFO  NativeLibraryHandler - Loading external library : m
+INFO  LibraryModule - libc.so is being preprocessed
+INFO  NativeLibraryHandler - Loading external library : c
+INFO  LibraryModule - libdl.so is being preprocessed
+INFO  NativeLibraryHandler - Loading external library : dl
+INFO  NativeLibraryHandler - Loading library : myjni
+WARN  LibraryModule - libmyjni.so is loading....
+WARN  LibraryModule - file size is 105890
+DEBUG LibraryModule - Subroutine "Java_edu_usc_FreemeTest_FreemeTestActivity_t1" has been created
+DEBUG LibraryModule - Subroutine "_Z2c1ic" has been created
+DEBUG LibraryModule - Subroutine "Java_edu_usc_FreemeTest_FreemeTestActivity_t2" has been created
+DEBUG LibraryModule - Subroutine "sub_D90" has been created
+DEBUG LibraryModule - Subroutine "sub_DA2" has been created
+DEBUG LibraryModule - Subroutine "sub_E0A" has been created
+DEBUG LibraryModule - Subroutine "sub_E3C" has been created
+DEBUG LibraryModule - Subroutine "sub_EE0" has been created
+DEBUG LibraryModule - Subroutine "sub_F2E" has been created
+DEBUG LibraryModule - Subroutine "sub_F3A" has been created
+DEBUG LibraryModule - Subroutine "sub_F3E" has been created
+DEBUG LibraryModule - Subroutine "sub_F40" has been created
+DEBUG LibraryModule - Subroutine "sub_F7A" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_GetCFA" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_RaiseException" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_ForcedUnwind" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Resume" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Resume_or_Rethrow" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_Complete" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_DeleteException" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_VRS_Get" has been created
+DEBUG LibraryModule - Subroutine "sub_1144" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_VRS_Set" has been created
+DEBUG LibraryModule - Subroutine "sub_1188" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Backtrace" has been created
+DEBUG LibraryModule - Subroutine "__aeabi_unwind_cpp_pr0" has been created
+DEBUG LibraryModule - Subroutine "__aeabi_unwind_cpp_pr1" has been created
+DEBUG LibraryModule - Subroutine "__aeabi_unwind_cpp_pr2" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_VRS_Pop" has been created
+DEBUG LibraryModule - Subroutine "restore_core_regs" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Restore_VFP" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Save_VFP" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Restore_VFP_D" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Save_VFP_D" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Restore_VFP_D_16_to_31" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Save_VFP_D_16_to_31" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Restore_WMMXD" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Save_WMMXD" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Restore_WMMXC" has been created
+DEBUG LibraryModule - Subroutine "__gnu_Unwind_Save_WMMXC" has been created
+DEBUG LibraryModule - Subroutine "___Unwind_RaiseException" has been created
+DEBUG LibraryModule - Subroutine "___Unwind_Resume" has been created
+DEBUG LibraryModule - Subroutine "___Unwind_Resume_or_Rethrow" has been created
+DEBUG LibraryModule - Subroutine "___Unwind_ForcedUnwind" has been created
+DEBUG LibraryModule - Subroutine "___Unwind_Backtrace" has been created
+DEBUG LibraryModule - Subroutine "sub_1880" has been created
+DEBUG LibraryModule - Subroutine "sub_18C4" has been created
+DEBUG LibraryModule - Subroutine "__gnu_unwind_execute" has been created
+DEBUG LibraryModule - Subroutine "__gnu_unwind_frame" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_GetRegionStart" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_GetLanguageSpecificData" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_GetDataRelBase" has been created
+DEBUG LibraryModule - Subroutine "_Unwind_GetTextRelBase" has been created
+WARN  LibraryModule - libmyjni.so is loaded....
+INFO  NativeLibraryHandler - myjni is loaded
+INFO  NativeLibraryHandler - Loaded library : myjni
+
+Staring interpreting for edu.usc.FreemeTest.FreemeTestActivity int t1()
+INFO  NativeLibraryHandler - PUSH
+WARN  NativeLibraryHandler - 
+
+ #1-Interpreting Java_edu_usc_FreemeTest_FreemeTestActivity_t1 - myjni
+INFO  NativeLibraryHandler - store destination is S:0xeffffffc
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - store destination is S:0xeffffff8
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - store destination is S:0xeffffff4
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - store destination is S:0xeffffff0
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - d04 : PUSH            {R4-R6,LR}
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:This:H2:0x8 R2:S R3:S R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:S PC:d06 : MOV             R4, R0 
+INFO  NativeLibraryHandler - d06 : MOV             R4, R0
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:This:H2:0x8 R2:S R3:S R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:S PC:d08 : LDR             R3, [R0] 
+INFO  NativeLibraryHandler - load source is H0:0x8
+DEBUG NativeLibraryHandler - loaded Value ENV:0x8
+INFO  NativeLibraryHandler - d08 : LDR             R3, [R0]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:This:H2:0x8 R2:S R3:ENV:0x8 R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:S PC:d0a : LDR             R1, =(aEduUscFreemete - 0xD12) 
+INFO  NativeLibraryHandler - d0a : LDR             R1, =(aEduUscFreemete - 0xD12)
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:Var:aEduUscFreemete: #0xfc2 R2:S R3:ENV:0x8 R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:S PC:d0c : LDR             R3, [R3,#0x18] 
+INFO  NativeLibraryHandler - load source is ENV:0x20
+DEBUG NativeLibraryHandler - loaded Value FindClass
+INFO  NativeLibraryHandler - d0c : LDR             R3, [R3,#0x18]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:Var:aEduUscFreemete: #0xfc2 R2:S R3:FindClass R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:S PC:d0e : ADD             R1, PC 
+INFO  NativeLibraryHandler - d0e : ADD             R1, PC
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:S R3:FindClass R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:S PC:d10 : BLX             R3 
+INFO  NativeLibraryHandler - Register FindClass is FindClass
+INFO  JNIFunction - JNI Function Call : FindClass
+INFO  JNIFunction - Class name is edu/usc/FreemeTest/Test1
+DEBUG NativeLibraryHandler - Internal function FindClass, result: J:Result:H3:0x8
+INFO  NativeLibraryHandler - d10 : BLX             R3
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:S R3:FindClass R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d12 : LDR             R3, [R4] 
+INFO  NativeLibraryHandler - load source is H0:0x8
+DEBUG NativeLibraryHandler - loaded Value ENV:0x8
+INFO  NativeLibraryHandler - d12 : LDR             R3, [R4]
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:S R3:ENV:0x8 R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d14 : LDR             R2, =(aTest - 0xD1E) 
+INFO  NativeLibraryHandler - d14 : LDR             R2, =(aTest - 0xD1E)
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0xfcf R3:ENV:0x8 R4:H0:0x8 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d16 : LDR.W           R6, [R3,#0x84] 
+INFO  NativeLibraryHandler - load source is ENV:0x8c
+DEBUG NativeLibraryHandler - loaded Value GetMethodID
+INFO  NativeLibraryHandler - d16 : LDR.W           R6, [R3,#0x84]
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0xfcf R3:ENV:0x8 R4:H0:0x8 R5:S R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d1a : ADD             R2, PC 
+INFO  NativeLibraryHandler - d1a : ADD             R2, PC
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0x1ced R3:ENV:0x8 R4:H0:0x8 R5:S R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d1c : LDR             R3, =(aV - 0xD22) 
+INFO  NativeLibraryHandler - d1c : LDR             R3, =(aV - 0xD22)
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0x1ced R3:Var:aV: #0xfd0 R4:H0:0x8 R5:S R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d1e : ADD             R3, PC 
+INFO  NativeLibraryHandler - d1e : ADD             R3, PC
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0x1ced R3:Var:aV: #0x1cf2 R4:H0:0x8 R5:S R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d20 : MOV             R5, R0 
+INFO  NativeLibraryHandler - d20 : MOV             R5, R0
+DEBUG NativeLibraryHandler - R0:J:Result:H3:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0x1ced R3:Var:aV: #0x1cf2 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d22 : MOV             R0, R4 
+INFO  NativeLibraryHandler - d22 : MOV             R0, R4
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:Var:aEduUscFreemete: #0x1cd4 R2:Var:aTest: #0x1ced R3:Var:aV: #0x1cf2 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d24 : MOV             R1, R5 
+INFO  NativeLibraryHandler - d24 : MOV             R1, R5
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aTest: #0x1ced R3:Var:aV: #0x1cf2 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d12 : LDR             R3, [R4] PC:d26 : BLX             R6 
+INFO  NativeLibraryHandler - Register GetMethodID is GetMethodID
+INFO  JNIFunction - JNI Function Call : GetMethodID
+INFO  JNIFunction - Class name:edu.usc.FreemeTest.Test1 Method name:test params()V
+DEBUG NativeLibraryHandler - Internal function GetMethodID, result: J:Result:H4:0x8
+INFO  NativeLibraryHandler - d26 : BLX             R6
+DEBUG NativeLibraryHandler - R0:J:Result:H4:0x8 R1:J:Result:H3:0x8 R2:Var:aTest: #0x1ced R3:Var:aV: #0x1cf2 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d28 : LDR             R3, [R4] 
+INFO  NativeLibraryHandler - load source is H0:0x8
+DEBUG NativeLibraryHandler - loaded Value ENV:0x8
+INFO  NativeLibraryHandler - d28 : LDR             R3, [R4]
+DEBUG NativeLibraryHandler - R0:J:Result:H4:0x8 R1:J:Result:H3:0x8 R2:Var:aTest: #0x1ced R3:ENV:0x8 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d2a : LDR             R2, =(aK1 - 0xD38) 
+INFO  NativeLibraryHandler - d2a : LDR             R2, =(aK1 - 0xD38)
+DEBUG NativeLibraryHandler - R0:J:Result:H4:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0xfbe R3:ENV:0x8 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d2c : MOV             R0, R4 
+INFO  NativeLibraryHandler - d2c : MOV             R0, R4
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0xfbe R3:ENV:0x8 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d2e : MOV             R1, R5 
+INFO  NativeLibraryHandler - d2e : MOV             R1, R5
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0xfbe R3:ENV:0x8 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetMethodID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d30 : LDR.W           R6, [R3,#0x178] 
+INFO  NativeLibraryHandler - load source is ENV:0x180
+DEBUG NativeLibraryHandler - loaded Value GetFieldID
+INFO  NativeLibraryHandler - d30 : LDR.W           R6, [R3,#0x178]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0xfbe R3:ENV:0x8 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetFieldID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d34 : ADD             R2, PC 
+INFO  NativeLibraryHandler - d34 : ADD             R2, PC
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0x1cf6 R3:ENV:0x8 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetFieldID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d36 : LDR             R3, =(aI - 0xD3C) 
+INFO  NativeLibraryHandler - d36 : LDR             R3, =(aI - 0xD3C)
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0x1cf6 R3:Var:aI: #0xfbd R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetFieldID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d38 : ADD             R3, PC 
+INFO  NativeLibraryHandler - d38 : ADD             R3, PC
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0x1cf6 R3:Var:aI: #0x1cf9 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetFieldID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d28 : LDR             R3, [R4] PC:d3a : BLX             R6 
+INFO  NativeLibraryHandler - Register GetFieldID is GetFieldID
+INFO  JNIFunction - JNI Function Call : GetFieldID
+DEBUG NativeLibraryHandler - Internal function GetFieldID, result: J:Result:H5:0x8
+INFO  NativeLibraryHandler - d3a : BLX             R6
+DEBUG NativeLibraryHandler - R0:J:Result:H5:0x8 R1:J:Result:H3:0x8 R2:Var:aK1: #0x1cf6 R3:Var:aI: #0x1cf9 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetFieldID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d3c : MOVS            R0, #0 PC:d3c : MOVS            R0, #0 
+INFO  NativeLibraryHandler - d3c : MOVS            R0, #0
+DEBUG NativeLibraryHandler - R0:0x0 R1:J:Result:H3:0x8 R2:Var:aK1: #0x1cf6 R3:Var:aI: #0x1cf9 R4:H0:0x8 R5:J:Result:H3:0x8 R6:GetFieldID R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff0 LR:d3c : MOVS            R0, #0 PC:d3e : POP             {R4-R6,PC} 
+INFO  NativeLibraryHandler - load source is S:0xeffffff0
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffff4
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffff8
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffffc
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d3e : POP             {R4-R6,PC}
+DEBUG NativeLibraryHandler - R0:0x0 R1:J:Result:H3:0x8 R2:Var:aK1: #0x1cf6 R3:Var:aI: #0x1cf9 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:d3c : MOVS            R0, #0 PC:S 
+INFO  NativeLibraryHandler - Success int t1()
+
+Staring interpreting for edu.usc.FreemeTest.FreemeTestActivity long t2(long)
+INFO  NativeLibraryHandler - PUSH
+WARN  NativeLibraryHandler - 
+
+ #1-Interpreting Java_edu_usc_FreemeTest_FreemeTestActivity_t2 - myjni
+INFO  NativeLibraryHandler - d60 : CMP             R2, #0xB
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:This:H6:0x8 R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:S PC:d62 : SBCS.W          R1, R3, #0 
+ERROR NativeLibraryHandler - Ambiguous conditional d62 : SBCS.W          R1, R3, #0
+WARN  NativeLibraryHandler - Set Ambiguous condition to true - d62 : SBCS.W          R1, R3, #0 
+
+INFO  NativeLibraryHandler - d62 : SBCS.W          R1, R3, #0
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:S PC:d66 : PUSH            {R4,LR} 
+INFO  NativeLibraryHandler - store destination is S:0xeffffffc
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - store destination is S:0xeffffff8
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - d66 : PUSH            {R4,LR}
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d68 : BLT             loc_D76 
+ERROR NativeLibraryHandler - Ambiguous conditional d68 : BLT             loc_D76
+WARN  NativeLibraryHandler - Set Ambiguous condition to true - d68 : BLT             loc_D76 
+
+INFO  NativeLibraryHandler - Register Var:loc_D76: #0xd76 is Var:loc_D76: #0xd76
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d76 : MOV             R4, 0xFFFFFFF1 
+INFO  NativeLibraryHandler - d76 : MOV             R4, 0xFFFFFFF1
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7a : MOVS            R1, #0xA 
+INFO  NativeLibraryHandler - d7a : MOVS            R1, #0xA
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7c : MOV.W           R0, #0x100 
+INFO  NativeLibraryHandler - d7c : MOV.W           R0, #0x100
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d80 : BL              _Z2c1ic 
+INFO  NativeLibraryHandler - Register Var:_Z2c1ic: #0xd54 is Var:_Z2c1ic: #0xd54
+INFO  NativeLibraryHandler - PUSH
+WARN  NativeLibraryHandler - 
+
+  #2-Interpreting _Z2c1ic - myjni
+INFO  NativeLibraryHandler - d80 : BL              _Z2c1ic
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d54 : ADD             R1, R0 
+INFO  NativeLibraryHandler - d54 : ADD             R1, R0
+DEBUG NativeLibraryHandler - R0:0x100 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d56 : UXTB            R0, R1 
+INFO  NativeLibraryHandler - d56 : UXTB            R0, R1
+DEBUG NativeLibraryHandler - R0:((_ zero_extend 24) ((_ extract 7 0) #x0000010a)) R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d58 : ADDS            R0, #0xA 
+INFO  NativeLibraryHandler - d58 : ADDS            R0, #0xA
+DEBUG NativeLibraryHandler - R0:0x14 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5a : ADD             R0, R1 
+INFO  NativeLibraryHandler - d5a : ADD             R0, R1
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5c : BX              LR 
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d5c : BX              LR
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d84 : ADD             R0, R4 
+INFO  NativeLibraryHandler - d84 : ADD             R0, R4
+DEBUG NativeLibraryHandler - R0:0x10f R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d86 : ASRS            R1, R0, #0x1F 
+INFO  NativeLibraryHandler - d86 : ASRS            R1, R0, #0x1F
+DEBUG NativeLibraryHandler - R0:0x10f R1:0x0 R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d88 : POP             {R4,PC} 
+INFO  NativeLibraryHandler - load source is S:0xeffffff8
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffffc
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d88 : POP             {R4,PC}
+DEBUG NativeLibraryHandler - R0:0x10f R1:0x0 R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:d84 : ADD             R0, R4 PC:S 
+WARN  NativeLibraryHandler - Set Ambiguous condition to false  - d68 : BLT             loc_D76
+
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76(skipped)
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6a : LDR             R3, =(x_ptr - 0xD70) 
+INFO  NativeLibraryHandler - d6a : LDR             R3, =(x_ptr - 0xD70)
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:Var:x_ptr: #0x2248 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6c : ADD             R3, PC 
+INFO  NativeLibraryHandler - d6c : ADD             R3, PC
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:Var:x_ptr: #0x2fb8 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6e : LDR             R3, [R3] 
+INFO  NativeLibraryHandler - load source is Var:x_ptr: #0x2fb8
+DEBUG NativeLibraryHandler - loaded Value I:0x3008
+INFO  NativeLibraryHandler - d6e : LDR             R3, [R3]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d70 : LDR             R4, [R3] 
+INFO  NativeLibraryHandler - load source is I:0x3008
+DEBUG NativeLibraryHandler - loaded Value A:(0xfffffffb)@I:0x3008
+INFO  NativeLibraryHandler - d70 : LDR             R4, [R3]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xfffffffb)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d72 : SUBS            R4, #0xF 
+INFO  NativeLibraryHandler - d72 : SUBS            R4, #0xF
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d74 : B               loc_D7A 
+INFO  NativeLibraryHandler - Register Var:loc_D7A: #0xd7a is Var:loc_D7A: #0xd7a
+INFO  NativeLibraryHandler - d74 : B               loc_D7A
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7a : MOVS            R1, #0xA 
+INFO  NativeLibraryHandler - d7a : MOVS            R1, #0xA
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7c : MOV.W           R0, #0x100 
+INFO  NativeLibraryHandler - d7c : MOV.W           R0, #0x100
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d80 : BL              _Z2c1ic 
+INFO  NativeLibraryHandler - Register Var:_Z2c1ic: #0xd54 is Var:_Z2c1ic: #0xd54
+INFO  NativeLibraryHandler - PUSH
+WARN  NativeLibraryHandler - 
+
+  #2-Interpreting _Z2c1ic - myjni
+INFO  NativeLibraryHandler - d80 : BL              _Z2c1ic
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d54 : ADD             R1, R0 
+INFO  NativeLibraryHandler - d54 : ADD             R1, R0
+DEBUG NativeLibraryHandler - R0:0x100 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d56 : UXTB            R0, R1 
+INFO  NativeLibraryHandler - d56 : UXTB            R0, R1
+DEBUG NativeLibraryHandler - R0:((_ zero_extend 24) ((_ extract 7 0) #x0000010a)) R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d58 : ADDS            R0, #0xA 
+INFO  NativeLibraryHandler - d58 : ADDS            R0, #0xA
+DEBUG NativeLibraryHandler - R0:0x14 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5a : ADD             R0, R1 
+INFO  NativeLibraryHandler - d5a : ADD             R0, R1
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5c : BX              LR 
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d5c : BX              LR
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d84 : ADD             R0, R4 
+INFO  NativeLibraryHandler - d84 : ADD             R0, R4
+DEBUG NativeLibraryHandler - R0:A:(0x10a)@I:0x3008 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d86 : ASRS            R1, R0, #0x1F 
+INFO  NativeLibraryHandler - d86 : ASRS            R1, R0, #0x1F
+DEBUG NativeLibraryHandler - R0:A:(0x10a)@I:0x3008 R1:A:(0x0)@I:0x3008 R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d88 : POP             {R4,PC} 
+INFO  NativeLibraryHandler - load source is S:0xeffffff8
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffffc
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d88 : POP             {R4,PC}
+DEBUG NativeLibraryHandler - R0:A:(0x10a)@I:0x3008 R1:A:(0x0)@I:0x3008 R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:d84 : ADD             R0, R4 PC:S 
+WARN  NativeLibraryHandler - Done Ambiguous condition - d68 : BLT             loc_D76
+
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:((_ extract 63 32) k!167275971) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6c : ADD             R3, PC 
+WARN  NativeLibraryHandler - Set Ambiguous condition to false  - d62 : SBCS.W          R1, R3, #0
+
+INFO  NativeLibraryHandler - d62 : SBCS.W          R1, R3, #0
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:S PC:d66 : PUSH            {R4,LR} 
+INFO  NativeLibraryHandler - store destination is S:0xeffffffc
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - store destination is S:0xeffffff8
+INFO  NativeLibraryHandler - stored value is S
+INFO  NativeLibraryHandler - d66 : PUSH            {R4,LR}
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d68 : BLT             loc_D76 
+ERROR NativeLibraryHandler - Ambiguous conditional d68 : BLT             loc_D76
+WARN  NativeLibraryHandler - Set Ambiguous condition to true - d68 : BLT             loc_D76 
+
+INFO  NativeLibraryHandler - Register Var:loc_D76: #0xd76 is Var:loc_D76: #0xd76
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d76 : MOV             R4, 0xFFFFFFF1 
+INFO  NativeLibraryHandler - d76 : MOV             R4, 0xFFFFFFF1
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7a : MOVS            R1, #0xA 
+INFO  NativeLibraryHandler - d7a : MOVS            R1, #0xA
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7c : MOV.W           R0, #0x100 
+INFO  NativeLibraryHandler - d7c : MOV.W           R0, #0x100
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d80 : BL              _Z2c1ic 
+INFO  NativeLibraryHandler - Register Var:_Z2c1ic: #0xd54 is Var:_Z2c1ic: #0xd54
+INFO  NativeLibraryHandler - PUSH
+WARN  NativeLibraryHandler - 
+
+  #2-Interpreting _Z2c1ic - myjni
+INFO  NativeLibraryHandler - d80 : BL              _Z2c1ic
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d54 : ADD             R1, R0 
+INFO  NativeLibraryHandler - d54 : ADD             R1, R0
+DEBUG NativeLibraryHandler - R0:0x100 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d56 : UXTB            R0, R1 
+INFO  NativeLibraryHandler - d56 : UXTB            R0, R1
+DEBUG NativeLibraryHandler - R0:((_ zero_extend 24) ((_ extract 7 0) #x0000010a)) R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d58 : ADDS            R0, #0xA 
+INFO  NativeLibraryHandler - d58 : ADDS            R0, #0xA
+DEBUG NativeLibraryHandler - R0:0x14 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5a : ADD             R0, R1 
+INFO  NativeLibraryHandler - d5a : ADD             R0, R1
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5c : BX              LR 
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d5c : BX              LR
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d84 : ADD             R0, R4 
+INFO  NativeLibraryHandler - d84 : ADD             R0, R4
+DEBUG NativeLibraryHandler - R0:0x10f R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d86 : ASRS            R1, R0, #0x1F 
+INFO  NativeLibraryHandler - d86 : ASRS            R1, R0, #0x1F
+DEBUG NativeLibraryHandler - R0:0x10f R1:0x0 R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:0xfffffff1 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d88 : POP             {R4,PC} 
+INFO  NativeLibraryHandler - load source is S:0xeffffff8
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffffc
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d88 : POP             {R4,PC}
+DEBUG NativeLibraryHandler - R0:0x10f R1:0x0 R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:d84 : ADD             R0, R4 PC:S 
+WARN  NativeLibraryHandler - Set Ambiguous condition to false  - d68 : BLT             loc_D76
+
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76(skipped)
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6a : LDR             R3, =(x_ptr - 0xD70) 
+INFO  NativeLibraryHandler - d6a : LDR             R3, =(x_ptr - 0xD70)
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:Var:x_ptr: #0x2248 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6c : ADD             R3, PC 
+INFO  NativeLibraryHandler - d6c : ADD             R3, PC
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:Var:x_ptr: #0x2fb8 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6e : LDR             R3, [R3] 
+INFO  NativeLibraryHandler - load source is Var:x_ptr: #0x2fb8
+DEBUG NativeLibraryHandler - loaded Value I:0x3008
+INFO  NativeLibraryHandler - d6e : LDR             R3, [R3]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d70 : LDR             R4, [R3] 
+INFO  NativeLibraryHandler - load source is I:0x3008
+DEBUG NativeLibraryHandler - loaded Value A:(0xfffffffb)@I:0x3008
+INFO  NativeLibraryHandler - d70 : LDR             R4, [R3]
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xfffffffb)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d72 : SUBS            R4, #0xF 
+INFO  NativeLibraryHandler - d72 : SUBS            R4, #0xF
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d74 : B               loc_D7A 
+INFO  NativeLibraryHandler - Register Var:loc_D7A: #0xd7a is Var:loc_D7A: #0xd7a
+INFO  NativeLibraryHandler - d74 : B               loc_D7A
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7a : MOVS            R1, #0xA 
+INFO  NativeLibraryHandler - d7a : MOVS            R1, #0xA
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d7c : MOV.W           R0, #0x100 
+INFO  NativeLibraryHandler - d7c : MOV.W           R0, #0x100
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d80 : BL              _Z2c1ic 
+INFO  NativeLibraryHandler - Register Var:_Z2c1ic: #0xd54 is Var:_Z2c1ic: #0xd54
+INFO  NativeLibraryHandler - PUSH
+WARN  NativeLibraryHandler - 
+
+  #2-Interpreting _Z2c1ic - myjni
+INFO  NativeLibraryHandler - d80 : BL              _Z2c1ic
+DEBUG NativeLibraryHandler - R0:0x100 R1:0xa R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d54 : ADD             R1, R0 
+INFO  NativeLibraryHandler - d54 : ADD             R1, R0
+DEBUG NativeLibraryHandler - R0:0x100 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d56 : UXTB            R0, R1 
+INFO  NativeLibraryHandler - d56 : UXTB            R0, R1
+DEBUG NativeLibraryHandler - R0:((_ zero_extend 24) ((_ extract 7 0) #x0000010a)) R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d58 : ADDS            R0, #0xA 
+INFO  NativeLibraryHandler - d58 : ADDS            R0, #0xA
+DEBUG NativeLibraryHandler - R0:0x14 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5a : ADD             R0, R1 
+INFO  NativeLibraryHandler - d5a : ADD             R0, R1
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d5c : BX              LR 
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d5c : BX              LR
+DEBUG NativeLibraryHandler - R0:0x11e R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d84 : ADD             R0, R4 
+INFO  NativeLibraryHandler - d84 : ADD             R0, R4
+DEBUG NativeLibraryHandler - R0:A:(0x10a)@I:0x3008 R1:0x10a R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d86 : ASRS            R1, R0, #0x1F 
+INFO  NativeLibraryHandler - d86 : ASRS            R1, R0, #0x1F
+DEBUG NativeLibraryHandler - R0:A:(0x10a)@I:0x3008 R1:A:(0x0)@I:0x3008 R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:A:(0xffffffec)@I:0x3008 R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:d84 : ADD             R0, R4 PC:d88 : POP             {R4,PC} 
+INFO  NativeLibraryHandler - load source is S:0xeffffff8
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - load source is S:0xeffffffc
+DEBUG NativeLibraryHandler - loaded Value S
+INFO  NativeLibraryHandler - RETURN
+
+INFO  NativeLibraryHandler - POP
+INFO  NativeLibraryHandler - d88 : POP             {R4,PC}
+DEBUG NativeLibraryHandler - R0:A:(0x10a)@I:0x3008 R1:A:(0x0)@I:0x3008 R2:J:0:((_ extract 31 0) k!167275971) R3:I:0x3008 R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:d84 : ADD             R0, R4 PC:S 
+WARN  NativeLibraryHandler - Done Ambiguous condition - d68 : BLT             loc_D76
+
+INFO  NativeLibraryHandler - d68 : BLT             loc_D76
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:(bvadd #xffffffff ((_ extract 63 32) k!167275971)) R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xeffffff8 LR:S PC:d6c : ADD             R3, PC 
+WARN  NativeLibraryHandler - Done Ambiguous condition - d62 : SBCS.W          R1, R3, #0
+
+INFO  NativeLibraryHandler - d62 : SBCS.W          R1, R3, #0
+DEBUG NativeLibraryHandler - R0:H0:0x8 R1:J:This:H6:0x8 R2:J:0:((_ extract 31 0) k!167275971) R3:J:0:((_ extract 63 32) k!167275971) R4:S R5:S R6:S R7:S R8:S R9:S R10:S R11:S R12:S SP:S:0xf0000000 LR:S PC:d66 : PUSH            {R4,LR} 
+INFO  NativeLibraryHandler - Success long t2(long)
+done!!
+done
+
+Process finished with exit code 0
+
